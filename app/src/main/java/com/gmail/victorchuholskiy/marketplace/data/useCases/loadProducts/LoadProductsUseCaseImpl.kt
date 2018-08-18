@@ -4,6 +4,8 @@ import com.gmail.victorchuholskiy.marketplace.data.source.local.ProductsDataBase
 import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
 import com.gmail.victorchuholskiy.marketplace.data.source.remote.RestClient
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -35,5 +37,7 @@ class LoadProductsUseCaseImpl @Inject constructor(private val restClient: RestCl
 						false
 					}
 				}
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
 	}
 }
