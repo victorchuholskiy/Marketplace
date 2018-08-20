@@ -1,4 +1,4 @@
-package com.gmail.victorchuholskiy.marketplace.data.useCases.loadProducts
+package com.gmail.victorchuholskiy.marketplace.useCases.saveProducts
 
 import com.gmail.victorchuholskiy.marketplace.data.source.local.ProductsDataBase
 import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
@@ -12,9 +12,9 @@ import javax.inject.Inject
  * Created by viktor.chukholskiy
  * 18/08/18.
  */
-class LoadProductsUseCaseImpl @Inject constructor(private val restClient: RestClient): LoadProductsUseCase {
+class SaveProductsUseCaseImpl @Inject constructor(private val restClient: RestClient): SaveProductsUseCase {
 
-	override fun execute(params: LoadProductsUseCase.Params): Observable<Boolean> {
+	override fun execute(params: SaveProductsUseCase.Params): Observable<Boolean> {
 		return restClient
 				.getProducts()
 				.map {

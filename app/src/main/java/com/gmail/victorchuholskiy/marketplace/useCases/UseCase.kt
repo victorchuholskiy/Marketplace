@@ -1,4 +1,4 @@
-package com.gmail.victorchuholskiy.marketplace.data.useCases
+package com.gmail.victorchuholskiy.marketplace.useCases
 
 import io.reactivex.Observable
 

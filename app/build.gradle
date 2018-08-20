@@ -77,7 +77,8 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
 	implementation "android.arch.persistence.room:runtime:$roomVersion"
-	annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
+	implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+	kapt "android.arch.persistence.room:compiler:$roomVersion"
 }
 repositories {
 	mavenCentral()

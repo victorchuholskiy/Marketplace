@@ -1,10 +1,9 @@
 package com.gmail.victorchuholskiy.marketplace.splash
 
 
-import android.content.Context
 import com.gmail.victorchuholskiy.marketplace.data.source.remote.RestClientImpl
-import com.gmail.victorchuholskiy.marketplace.data.useCases.loadProducts.LoadProductsUseCase
-import com.gmail.victorchuholskiy.marketplace.data.useCases.loadProducts.LoadProductsUseCaseImpl
+import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCaseImpl
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
 import dagger.Binds
 import dagger.Module
@@ -21,22 +20,15 @@ import dagger.Provides
 abstract class SplashModule {
 	@ActivityScoped
 	@Binds
-	abstract fun userDetailsPresenter(presenter: SplashPresenter): SplashContract.Presenter
+	abstract fun splashPresenter(presenter: SplashPresenter): SplashContract.Presenter
 
 	@Module
 	companion object {
-	/*	@JvmStatic
-		@Provides
-		@ActivityScoped
-		fun provideContext(activity: SplashActivity): Context {
-			return activity
-		}*/
-
 		@JvmStatic
 		@Provides
 		@ActivityScoped
-		fun provideLoadProductsUseCase(): LoadProductsUseCase {
-			return LoadProductsUseCaseImpl(RestClientImpl)
+		fun provideLoadProductsUseCase(): SaveProductsUseCase {
+			return SaveProductsUseCaseImpl(RestClientImpl)
 		}
 	}
 }

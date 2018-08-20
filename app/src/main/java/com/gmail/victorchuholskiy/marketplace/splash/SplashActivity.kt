@@ -1,9 +1,9 @@
 package com.gmail.victorchuholskiy.marketplace.splash
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.gmail.victorchuholskiy.marketplace.MainActivity
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 /**
@@ -13,7 +13,7 @@ import javax.inject.Inject
  * Simple splash activity for solving the problem of blank white page at the start of the app
  * and loading list of products during the first run
  */
-class SplashActivity : AppCompatActivity(), SplashContract.View {
+class SplashActivity : DaggerAppCompatActivity(), SplashContract.View {
 
 	@Inject
 	lateinit var presenter: SplashContract.Presenter
