@@ -2,9 +2,11 @@ package com.gmail.victorchuholskiy.marketplace.products
 
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
 import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsUseCase
+import com.gmail.victorchuholskiy.marketplace.utils.ProductsNameComparator
 import com.moovel.android.coding.challenge.utils.getIdlingResource
 import com.moovel.android.coding.challenge.utils.idlingDecrement
 import com.moovel.android.coding.challenge.utils.idlingIncrement
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -28,6 +30,7 @@ class ProductsPresenter @Inject constructor(private val getProductUseCase: GetPr
 							if (getIdlingResource().isIdleNow) {
 								idlingDecrement()
 							}
+							Collections.sort(it, ProductsNameComparator())
 							view!!.showProduct(it)
 							view!!.hideProgress()
 						},
