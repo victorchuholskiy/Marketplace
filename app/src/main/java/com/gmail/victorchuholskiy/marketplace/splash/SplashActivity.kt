@@ -2,7 +2,6 @@ package com.gmail.victorchuholskiy.marketplace.splash
 
 import android.content.Intent
 import android.widget.Toast
-import com.gmail.victorchuholskiy.marketplace.MainActivity
 import com.gmail.victorchuholskiy.marketplace.products.ProductsActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject

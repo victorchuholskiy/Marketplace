@@ -2,4 +2,6 @@
 	<string name="app_name">Marketplace</string>
 
 	<string name="def_error">Something went wrong</string>
+	<string name="current_price">Current price</string>
+	<string name="original_price">Original price</string>
 </resources>

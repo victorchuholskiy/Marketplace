@@ -1,7 +1,6 @@
 package com.gmail.victorchuholskiy.marketplace.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ class ProductsAdapter(private var items: MutableList<Product>, private val liste
 	override fun getItemCount() = items.size
 
 	fun setData(products: List<Product>) {
-		Log.d("AAA", "setData " + products.size)
 		items.clear()
 		items.addAll(products)
 		notifyDataSetChanged()
@@ -36,8 +34,13 @@ class ProductsAdapter(private var items: MutableList<Product>, private val liste
 					.load(item.url)
 					.error(R.drawable.ic_placeholder)
 					.placeholder(R.drawable.ic_placeholder)
-					.into(itemView.iv_avatar)
+					.into(itemView.iv_photo)
 			setOnClickListener { listener(item) }
+			val strCurrentPrice = "${resources.getString(R.string.current_price)}: ${item.currentPrice} ${item.currency}"
+			val strOriginalPrice = "${resources.getString(R.string.original_price)}: ${item.originalPrice} ${item.currency}"
+			itemView.tv_current_price.text = strCurrentPrice
+			itemView.tv_original_price.text = strOriginalPrice
+			itemView.tv_original_price.visibility = if (item.currentPrice == item.originalPrice) View.INVISIBLE else View.VISIBLE
 		}
 	}
 }
