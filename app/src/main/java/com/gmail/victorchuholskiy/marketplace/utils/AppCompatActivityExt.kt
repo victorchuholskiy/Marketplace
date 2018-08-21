@@ -12,9 +12,10 @@ import android.support.v7.app.AppCompatActivity
  * performed by the `fragmentManager`.
  */
 fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment,
-												@IdRes frameId: Int) {
+												@IdRes frameId: Int,
+												tag: String) {
 	supportFragmentManager.transact {
-		replace(frameId, fragment)
+		replace(frameId, fragment).addToBackStack(tag)
 	}
 }
 

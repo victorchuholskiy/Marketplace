@@ -1,5 +1,6 @@
 package com.gmail.victorchuholskiy.marketplace.products
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -25,10 +26,21 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 	@Inject
 	lateinit var presenter: ProductsContract.Presenter
 
+	private val productsAdapter = ProductsAdapter(ArrayList(), listener = {
+		showProductDetailsListener!!.showDetails(it.url, it.name)
+	})
+
 	private lateinit var rvProducts: RecyclerView
 	private lateinit var srlRefresh: SwipeRefreshLayout
 
-	private val productsAdapter = ProductsAdapter(ArrayList(), listener = {})
+	private var showProductDetailsListener: ProductDetailsListener? = null
+
+	override fun onAttach(context: Context?) {
+		super.onAttach(context)
+		if (context is ProductDetailsListener) {
+			showProductDetailsListener = context
+		}
+	}
 
 	override fun onCreateView(inflater: LayoutInflater,
 							  container: ViewGroup?,

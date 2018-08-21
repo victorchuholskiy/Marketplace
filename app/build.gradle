@@ -76,9 +76,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LoggingVersion"
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+	// Room database
 	implementation "android.arch.persistence.room:runtime:$roomVersion"
 	implementation "android.arch.persistence.room:rxjava2:$roomVersion"
 	kapt "android.arch.persistence.room:compiler:$roomVersion"
+
+	// Zoomed imageView library
+	implementation "com.jsibbold:zoomage:$zoomageVersion"
 }
 repositories {
 	mavenCentral()

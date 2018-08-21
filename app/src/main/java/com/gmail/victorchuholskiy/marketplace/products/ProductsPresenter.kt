@@ -1,6 +1,5 @@
 package com.gmail.victorchuholskiy.marketplace.products
 
-import android.util.Log
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
 import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsUseCase
 import com.moovel.android.coding.challenge.utils.getIdlingResource
@@ -17,14 +16,15 @@ class ProductsPresenter @Inject constructor(private val getProductUseCase: GetPr
 
 	private var view: ProductsContract.View? = null
 
+	private var dataLoaded = false
+
 	override fun loadProducts() {
-		Log.d("AAA", "loadProducts")
 		idlingIncrement() // App is busy until further notice
 		view!!.showProgress()
 		getProductUseCase.execute()
 				.subscribe(
 						{
-							Log.d("AAA", "count ProductsPresenter" + it.size)
+							dataLoaded = true
 							if (getIdlingResource().isIdleNow) {
 								idlingDecrement()
 							}
@@ -44,7 +44,9 @@ class ProductsPresenter @Inject constructor(private val getProductUseCase: GetPr
 
 	override fun takeView(view: ProductsContract.View) {
 		this.view = view
-		loadProducts()
+		if (!dataLoaded) {
+			loadProducts()
+		}
 	}
 
 	override fun dropView() {
