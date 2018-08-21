@@ -18,6 +18,9 @@ interface ProductsDao {
 	@Query("SELECT * from product")
 	fun getAll(): Flowable<List<Product>>
 
+	@Query("SELECT COUNT(*) FROM product")
+	fun getNumberOfRows(): Flowable<Int>
+
 	@Insert(onConflict = REPLACE)
-	fun insert(data: Product)
+	fun insertAll(data: List<Product>)
 }

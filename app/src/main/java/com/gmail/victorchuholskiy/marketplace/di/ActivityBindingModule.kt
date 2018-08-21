@@ -1,5 +1,7 @@
 package com.gmail.victorchuholskiy.marketplace.di
 
+import com.gmail.victorchuholskiy.marketplace.products.ProductsActivity
+import com.gmail.victorchuholskiy.marketplace.products.ProductsModule
 import com.gmail.victorchuholskiy.marketplace.splash.SplashActivity
 import com.gmail.victorchuholskiy.marketplace.splash.SplashModule
 import dagger.Module
@@ -20,4 +22,8 @@ abstract class ActivityBindingModule {
 	@ActivityScoped
 	@ContributesAndroidInjector(modules = [SplashModule::class])
 	internal abstract fun splashActivity(): SplashActivity
+
+	@ActivityScoped
+	@ContributesAndroidInjector(modules = [ProductsModule::class])
+	internal abstract fun productsActivity(): ProductsActivity
 }

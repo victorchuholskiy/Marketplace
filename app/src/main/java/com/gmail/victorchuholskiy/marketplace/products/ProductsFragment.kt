@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.gmail.victorchuholskiy.marketplace.R
+import com.gmail.victorchuholskiy.marketplace.adapter.ProductsAdapter
+import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
-import com.moovel.android.coding.challenge.R
-import com.moovel.android.coding.challenge.adapters.UsersAdapter
-import com.moovel.android.coding.challenge.data.models.UserSearchModel
-import com.moovel.android.coding.challenge.di.ActivityScoped
-import com.moovel.android.coding.challenge.userDetails.UserDetailsActivity
 import javax.inject.Inject
 
 /**
@@ -27,25 +25,23 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 	@Inject
 	lateinit var presenter: ProductsContract.Presenter
 
-	private lateinit var rvUsers: RecyclerView
+	private lateinit var rvProducts: RecyclerView
 	private lateinit var srlRefresh: SwipeRefreshLayout
 
-	private val usersAdapter = UsersAdapter(ArrayList(), listener = {openDetailsActivity(it.login)})
-	private val infiniteScrollListener = InfiniteScrollListener(func = { presenter.loadUsersPage(usersAdapter.page + 1) })
+	private val productsAdapter = ProductsAdapter(ArrayList(), listener = {})
 
 	override fun onCreateView(inflater: LayoutInflater,
 							  container: ViewGroup?,
 							  savedInstanceState: Bundle?): View? {
-		val view = inflater.inflate(R.layout.fragment_users, container, false)
+		val view = inflater.inflate(R.layout.fragment_products, container, false)
 
-		val imagesLayoutManager = LinearLayoutManager(context)
+		val productsLayoutManager = LinearLayoutManager(context)
 
 		with(view) {
-			rvUsers = findViewById<RecyclerView>(R.id.rv_users).apply {
+			rvProducts = findViewById<RecyclerView>(R.id.rv_products).apply {
 				setHasFixedSize(true)
-				layoutManager = imagesLayoutManager
-				adapter = usersAdapter
-				addOnScrollListener(infiniteScrollListener)
+				layoutManager = productsLayoutManager
+				adapter = productsAdapter
 			}
 
 			srlRefresh = findViewById<SwipeRefreshLayout>(R.id.srl_refresh).apply {
@@ -53,7 +49,7 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 						android.support.v4.content.ContextCompat.getColor(requireContext(), R.color.colorPrimary),
 						android.support.v4.content.ContextCompat.getColor(requireContext(), R.color.colorAccent)
 				)
-				setOnRefreshListener { presenter.loadUsersPage(1, clear = true) }
+				setOnRefreshListener {  }
 			}
 		}
 		return view
@@ -69,9 +65,8 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 		presenter.dropView()
 	}
 
-	override fun showUsers(images: List<UserSearchModel>, clear: Boolean) {
-		if (clear) usersAdapter.setData(images) else usersAdapter.addData(images)
-		infiniteScrollListener.isRefreshing = false
+	override fun showProduct(products: List<Product>) {
+		productsAdapter.setData(products)
 	}
 
 	override fun showProgress() {
@@ -84,9 +79,5 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 
 	override fun showError(exception: Throwable?) {
 		Toast.makeText(context, exception?.message , Toast.LENGTH_SHORT).show()
-	}
-
-	private fun openDetailsActivity(userName: String) {
-		startActivity(UserDetailsActivity.getIntent(activity!!, userName))
 	}
 }

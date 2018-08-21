@@ -1,10 +1,13 @@
 package com.gmail.victorchuholskiy.marketplace.splash
 
 
+import android.content.Context
 import com.gmail.victorchuholskiy.marketplace.data.source.remote.RestClientImpl
 import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCase
 import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCaseImpl
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
+import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -27,8 +30,15 @@ abstract class SplashModule {
 		@JvmStatic
 		@Provides
 		@ActivityScoped
-		fun provideLoadProductsUseCase(): SaveProductsUseCase {
-			return SaveProductsUseCaseImpl(RestClientImpl)
+		fun provideGetCountOfProductsUseCase(context: Context): GetCountOfProductsUseCase {
+			return GetCountOfProductsUseCaseImpl(context)
+		}
+
+		@JvmStatic
+		@Provides
+		@ActivityScoped
+		fun provideLoadProductsUseCase(context: Context): SaveProductsUseCase {
+			return SaveProductsUseCaseImpl(RestClientImpl, context)
 		}
 	}
 }

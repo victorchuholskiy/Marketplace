@@ -1,5 +1,6 @@
 package com.gmail.victorchuholskiy.marketplace.useCases.saveProducts
 
+import android.content.Context
 import com.gmail.victorchuholskiy.marketplace.data.source.local.ProductsDataBase
 import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
 import com.gmail.victorchuholskiy.marketplace.data.source.remote.RestClient
@@ -12,26 +13,29 @@ import javax.inject.Inject
  * Created by viktor.chukholskiy
  * 18/08/18.
  */
-class SaveProductsUseCaseImpl @Inject constructor(private val restClient: RestClient): SaveProductsUseCase {
+class SaveProductsUseCaseImpl @Inject constructor(private val restClient: RestClient,
+												  private val context: Context) : SaveProductsUseCase {
 
-	override fun execute(params: SaveProductsUseCase.Params): Observable<Boolean> {
+	override fun execute(): Observable<Boolean> {
 		return restClient
 				.getProducts()
 				.map {
 					if (it.products != null) {
-						val db = ProductsDataBase.getInstance(params.context)
+						val db = ProductsDataBase.getInstance(context)
+						val list = ArrayList<Product>()
 						for (productResponse in it.products) {
-							val product = Product(
-									productResponse.id,
-									productResponse.name!!,
-									productResponse.brand!!,
-									productResponse.originalPrice!!,
-									productResponse.currentPrice!!,
-									productResponse.currency!!,
-									productResponse.image!!.url!!
-							)
-							db!!.productsDao().insert(product)
+							list.add(
+									Product(
+											productResponse.id,
+											productResponse.name!!,
+											productResponse.brand!!,
+											productResponse.originalPrice!!,
+											productResponse.currentPrice!!,
+											productResponse.currency!!,
+											productResponse.image!!.url!!
+									))
 						}
+						db!!.productsDao().insertAll(list)
 						true
 					} else {
 						false

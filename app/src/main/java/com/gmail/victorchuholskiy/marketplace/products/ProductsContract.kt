@@ -13,8 +13,7 @@ import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
 interface ProductsContract {
 
 	interface View : BaseView<Presenter> {
-		fun showProduct(images: List<Product>,
-					  clear: Boolean = false)
+		fun showProduct(products: List<Product>)
 
 		fun showProgress()
 

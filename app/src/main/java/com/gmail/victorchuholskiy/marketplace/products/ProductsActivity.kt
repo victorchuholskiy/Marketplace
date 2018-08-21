@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class ProductsActivity : DaggerAppCompatActivity() {
 	@Inject
-	lateinit var taskFragmentProvider: Lazy<ProductsFragment>
+	lateinit var productsFragmentProvider: Lazy<ProductsFragment>
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class ProductsActivity : DaggerAppCompatActivity() {
 		setupActionBar(R.id.toolbar) {}
 
 		supportFragmentManager.findFragmentById(R.id.contentFrame)
-				as ProductsFragment? ?: taskFragmentProvider.get().also {
+				as ProductsFragment? ?: productsFragmentProvider.get().also {
 			replaceFragmentInActivity(it, R.id.contentFrame)
 		}
 	}

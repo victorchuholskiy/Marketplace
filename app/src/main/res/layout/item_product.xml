@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+	xmlns:card_view="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:foreground="?android:attr/selectableItemBackground"
+	android:clickable="true"
+	android:focusable="true"
+	card_view:cardUseCompatPadding="true"
+	card_view:cardCornerRadius="8dp">
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center_vertical">
+
+		<ImageView
+			android:id="@+id/iv_avatar"
+			android:layout_width="@dimen/image_size_small"
+			android:layout_height="@dimen/image_size_small"
+			android:scaleType="centerCrop"
+			android:contentDescription="@null"/>
+
+		<TextView
+			android:id="@+id/tv_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:maxLines="1"
+			android:singleLine="true"
+			android:layout_marginStart="8dp"/>
+	</LinearLayout>
+</android.support.v7.widget.CardView>

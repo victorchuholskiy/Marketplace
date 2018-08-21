@@ -3,6 +3,7 @@ package com.gmail.victorchuholskiy.marketplace.splash
 import android.content.Intent
 import android.widget.Toast
 import com.gmail.victorchuholskiy.marketplace.MainActivity
+import com.gmail.victorchuholskiy.marketplace.products.ProductsActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -29,7 +30,7 @@ class SplashActivity : DaggerAppCompatActivity(), SplashContract.View {
 	}
 
 	override fun navigateToNext() {
-		startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+		startActivity(Intent(this@SplashActivity, ProductsActivity::class.java))
 		finish()
 	}
 

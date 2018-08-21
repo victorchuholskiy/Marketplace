@@ -8,8 +8,8 @@ import io.reactivex.Observable
  *
  * Base use case
  */
-interface UseCase<PARAMS, RESPONSE> {
-	fun execute(params: PARAMS): Observable<RESPONSE>
+interface UseCase<RESPONSE> {
+	fun execute(): Observable<RESPONSE>
 
 
 }
