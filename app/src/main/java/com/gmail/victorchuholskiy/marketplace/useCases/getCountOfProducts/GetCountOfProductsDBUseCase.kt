@@ -7,6 +7,6 @@ import io.reactivex.Observable
  * Created by viktor.chukholskiy
  * 18/08/18.
  */
-interface GetCountOfProductsUseCase: UseCase<Int> {
+interface GetCountOfProductsDBUseCase: UseCase<Int> {
 	override fun execute(): Observable<Int>
 }

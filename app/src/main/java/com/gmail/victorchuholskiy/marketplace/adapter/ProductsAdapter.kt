@@ -30,6 +30,7 @@ class ProductsAdapter(private var items: MutableList<Product>, private val liste
 	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		fun bind(item: Product, listener: (Product) -> Unit) = with(itemView) {
 			itemView.tv_name.text = item.name
+			itemView.tv_brand.text = item.brand
 			Picasso.get()
 					.load(item.url)
 					.error(R.drawable.ic_placeholder)

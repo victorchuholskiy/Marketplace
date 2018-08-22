@@ -1,7 +1,7 @@
 package com.gmail.victorchuholskiy.marketplace.products
 
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
-import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsDBUseCase
 import com.gmail.victorchuholskiy.marketplace.utils.ProductsNameComparator
 import com.moovel.android.coding.challenge.utils.getIdlingResource
 import com.moovel.android.coding.challenge.utils.idlingDecrement
@@ -14,7 +14,7 @@ import javax.inject.Inject
  * 10/08/18.
  */
 @ActivityScoped
-class ProductsPresenter @Inject constructor(private val getProductUseCase: GetProductsUseCase) : ProductsContract.Presenter {
+class ProductsPresenter @Inject constructor(private val getProductUseCase: GetProductsDBUseCase) : ProductsContract.Presenter {
 
 	private var view: ProductsContract.View? = null
 
@@ -27,18 +27,13 @@ class ProductsPresenter @Inject constructor(private val getProductUseCase: GetPr
 				.subscribe(
 						{
 							dataLoaded = true
-							if (getIdlingResource().isIdleNow) {
-								idlingDecrement()
-							}
+							idlingDecrement()
 							Collections.sort(it, ProductsNameComparator())
 							view!!.showProduct(it)
 							view!!.hideProgress()
 						},
 						{
 							idlingDecrement()
-							if (getIdlingResource().isIdleNow) {
-								idlingDecrement()
-							}
 							view!!.showError(it)
 							view!!.hideProgress()
 						})

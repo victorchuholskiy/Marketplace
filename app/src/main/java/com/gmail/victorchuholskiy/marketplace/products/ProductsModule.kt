@@ -3,8 +3,8 @@ package com.gmail.victorchuholskiy.marketplace.products
 import android.content.Context
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
 import com.gmail.victorchuholskiy.marketplace.di.FragmentScoped
-import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsUseCase
-import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsUseCaseImpl
+import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsDBUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsDBUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -32,8 +32,8 @@ abstract class ProductsModule {
 		@JvmStatic
 		@Provides
 		@ActivityScoped
-		fun provideLoadUsersUseCase(context: Context): GetProductsUseCase {
-			return GetProductsUseCaseImpl(context)
+		fun provideLoadUsersUseCase(context: Context): GetProductsDBUseCase {
+			return GetProductsDBUseCaseImpl(context)
 		}
 	}
 }

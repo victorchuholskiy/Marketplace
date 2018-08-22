@@ -6,41 +6,45 @@ import com.google.gson.annotations.SerializedName
  * Created by viktor.chukholskiy
  * 18/08/18.
  */
-class ProductsResponse {
+class ProductsResponse() {
+
+	constructor(products: List<Product>) : this() {
+		this.products = products
+	}
 
 	@SerializedName("products")
-	val products: List<Product>? = null
+	var products: List<Product>? = null
 
-	inner class Product {
+	class Product {
 
 		@SerializedName("identifier")
-		val id: Int = 0
+		var id: Int = 0
 
 		@SerializedName("name")
-		val name: String? = null
+		var name: String? = null
 
 		@SerializedName("brand")
-		val brand: String? = null
+		var brand: String? = null
 
 		@SerializedName("original_price")
-		val originalPrice: Double? = null
+		var originalPrice: Double? = null
 
 		@SerializedName("current_price")
-		val currentPrice: Double? = null
+		var currentPrice: Double? = null
 
 		@SerializedName("currency")
-		val currency: String? = null
+		var currency: String? = null
 
 		@SerializedName("image")
-		val image: Image? = null
+		var image: Image? = null
 
-		inner class Image {
+		class Image {
 
 			@SerializedName("id")
-			val id: Int = 0
+			var id: Int = 0
 
 			@SerializedName("url")
-			val url: String? = null
+			var url: String? = null
 		}
 	}
 }

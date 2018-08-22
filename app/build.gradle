@@ -47,13 +47,12 @@ dependencies {
 
     // Testing.
     testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.assertj:assertj-core:$assertJ3Version"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     // Android Testing.
+	androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$testRulesVersion"
     androidTestImplementation "com.android.support.test:rules:$testRulesVersion"
-    androidTestImplementation "org.assertj:assertj-core:$assertJ2Version"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
 
     // Espresso UI Testing

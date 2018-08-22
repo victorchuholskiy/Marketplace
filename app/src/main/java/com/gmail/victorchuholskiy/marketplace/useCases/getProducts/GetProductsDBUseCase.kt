@@ -8,6 +8,6 @@ import io.reactivex.Observable
  * Created by viktor.chukholskiy
  * 18/08/18.
  */
-interface GetProductsUseCase: UseCase<List<Product>> {
+interface GetProductsDBUseCase: UseCase<List<Product>> {
 	override fun execute(): Observable<List<Product>>
 }

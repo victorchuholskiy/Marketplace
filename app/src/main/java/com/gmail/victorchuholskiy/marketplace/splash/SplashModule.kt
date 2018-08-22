@@ -3,11 +3,13 @@ package com.gmail.victorchuholskiy.marketplace.splash
 
 import android.content.Context
 import com.gmail.victorchuholskiy.marketplace.data.source.remote.RestClientImpl
-import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCase
-import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsUseCaseImpl
+import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsDBUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.saveProducts.SaveProductsDBUseCaseImpl
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
-import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsUseCase
-import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsUseCaseImpl
+import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsDBUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.getCountOfProducts.GetCountOfProductsDBUseCaseImpl
+import com.gmail.victorchuholskiy.marketplace.useCases.loadProducts.LoadProductsUseCase
+import com.gmail.victorchuholskiy.marketplace.useCases.loadProducts.LoadProductsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -30,15 +32,22 @@ abstract class SplashModule {
 		@JvmStatic
 		@Provides
 		@ActivityScoped
-		fun provideGetCountOfProductsUseCase(context: Context): GetCountOfProductsUseCase {
-			return GetCountOfProductsUseCaseImpl(context)
+		fun provideGetCountOfProductsUseCase(context: Context): GetCountOfProductsDBUseCase {
+			return GetCountOfProductsDBUseCaseImpl(context)
 		}
 
 		@JvmStatic
 		@Provides
 		@ActivityScoped
-		fun provideLoadProductsUseCase(context: Context): SaveProductsUseCase {
-			return SaveProductsUseCaseImpl(RestClientImpl, context)
+		fun provideLoadProductsUseCase(): LoadProductsUseCase {
+			return LoadProductsUseCaseImpl(RestClientImpl)
+		}
+
+		@JvmStatic
+		@Provides
+		@ActivityScoped
+		fun provideSaveProductsUseCase(context: Context): SaveProductsDBUseCase {
+			return SaveProductsDBUseCaseImpl(context)
 		}
 	}
 }

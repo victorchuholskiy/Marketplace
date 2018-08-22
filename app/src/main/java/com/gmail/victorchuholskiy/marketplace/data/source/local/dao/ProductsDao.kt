@@ -7,7 +7,6 @@ import android.arch.persistence.room.Query
 import com.gmail.victorchuholskiy.marketplace.data.source.local.entities.Product
 import io.reactivex.Flowable
 
-
 /**
  * Created by viktor.chukholskiy
  * 18/08/18.
