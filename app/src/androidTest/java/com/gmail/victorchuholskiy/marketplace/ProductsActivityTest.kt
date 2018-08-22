@@ -12,9 +12,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.gmail.victorchuholskiy.marketplace.products.ProductsActivity
-import com.gmail.victorchuholskiy.marketplace.utils.RecyclerViewItemCountAssertion.Companion.withItemCount
 import com.gmail.victorchuholskiy.marketplace.utils.getIdlingResource
-import org.hamcrest.Matchers.greaterThan
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -51,11 +49,14 @@ class ProductsActivityTest {
 
 	@Test
 	fun recyclerViewTest() {
-		Espresso.onView(ViewMatchers.withId(R.id.rv_products)).check(withItemCount(greaterThan(0)))
+		if (getRVItemCount() > 0) {
+			Espresso.onView(ViewMatchers.withId(R.id.rv_products)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, ViewActions.click()))
+			Espresso.onView(ViewMatchers.withId(R.id.zv_zoom)).check(matches(isDisplayed()))
+		}
+	}
 
-		Espresso.onView(ViewMatchers.withId(R.id.rv_products))
-				.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, ViewActions.click()))
-
-		Espresso.onView(ViewMatchers.withId(R.id.zv_zoom)).check(matches(isDisplayed()))
+	private fun getRVItemCount(): Int {
+		val recyclerView = activityRule.activity.findViewById(R.id.rv_products) as RecyclerView
+		return recyclerView.adapter!!.itemCount
 	}
 }

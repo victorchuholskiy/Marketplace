@@ -39,7 +39,8 @@ class SaveProductsDBUseCaseImpl @Inject constructor(private val context: Context
 											productResponse.image!!.url!!
 									))
 						}
-						db!!.productsDao().insertAll(list)
+						db!!.productsDao().deleteProducts()
+						db.productsDao().insertAll(list)
 						true
 					} else {
 						false

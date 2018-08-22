@@ -24,5 +24,7 @@ interface ProductsContract {
 
 	interface Presenter : BasePresenter<View> {
 		fun loadProducts()
+
+		fun updateProductsFromServer()
 	}
 }

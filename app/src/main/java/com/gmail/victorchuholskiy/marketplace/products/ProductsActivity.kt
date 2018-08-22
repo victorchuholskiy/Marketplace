@@ -5,7 +5,6 @@ import android.view.MenuItem
 import com.gmail.victorchuholskiy.marketplace.R
 import com.gmail.victorchuholskiy.marketplace.utils.ARG_URL
 import com.gmail.victorchuholskiy.marketplace.utils.DETAILS_FRAGMENT_TAG
-import com.gmail.victorchuholskiy.marketplace.utils.PRODUCT_FRAGMENT_TAG
 import com.moovel.android.coding.challenge.utils.replaceFragmentAddToBackStack
 import com.moovel.android.coding.challenge.utils.replaceFragmentInActivity
 import com.moovel.android.coding.challenge.utils.setupActionBar
