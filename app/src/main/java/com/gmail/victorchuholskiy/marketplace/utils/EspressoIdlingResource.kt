@@ -1,4 +1,4 @@
-package com.moovel.android.coding.challenge.utils
+package com.gmail.victorchuholskiy.marketplace.utils
 
 import android.support.test.espresso.IdlingResource
 
@@ -8,7 +8,7 @@ import android.support.test.espresso.IdlingResource
  */
 private val RESOURCE = "IDLING_DATA"
 
-private val mCountingIdlingResource = SimpleCountingIdlingResource(RESOURCE)
+private val mCountingIdlingResource = CountingIdlingResource(RESOURCE)
 
 fun idlingIncrement() {
 	mCountingIdlingResource.increment()

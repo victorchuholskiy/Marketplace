@@ -3,9 +3,8 @@ package com.gmail.victorchuholskiy.marketplace.products
 import com.gmail.victorchuholskiy.marketplace.di.ActivityScoped
 import com.gmail.victorchuholskiy.marketplace.useCases.getProducts.GetProductsDBUseCase
 import com.gmail.victorchuholskiy.marketplace.utils.ProductsNameComparator
-import com.moovel.android.coding.challenge.utils.getIdlingResource
-import com.moovel.android.coding.challenge.utils.idlingDecrement
-import com.moovel.android.coding.challenge.utils.idlingIncrement
+import com.gmail.victorchuholskiy.marketplace.utils.idlingDecrement
+import com.gmail.victorchuholskiy.marketplace.utils.idlingIncrement
 import java.util.*
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.moovel.android.coding.challenge.utils
+package com.gmail.victorchuholskiy.marketplace.utils
 
 import android.support.test.espresso.IdlingResource
 import java.util.concurrent.atomic.AtomicInteger
@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * Created by viktor.chukholskiy
  * 14/08/18.
  */
-class SimpleCountingIdlingResource
+class CountingIdlingResource
 /**
  * Creates a SimpleCountingIdlingResource
  *
