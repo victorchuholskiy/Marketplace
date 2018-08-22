@@ -21,6 +21,7 @@ class SplashPresenter @Inject constructor(private val getCountOfProductsUseCase:
 	private var view: SplashContract.View? = null
 
 	override fun loadProducts() {
+		val defErrorMsg = context!!.getString(R.string.def_error)
 		getCountOfProductsUseCase.execute()
 				.flatMap {
 					if (it == 0) {
@@ -34,9 +35,13 @@ class SplashPresenter @Inject constructor(private val getCountOfProductsUseCase:
 					}
 				}
 				.subscribe({
-					if (it) view!!.navigateToNext() else view!!.showError(context!!.getString(R.string.def_error))
+					if (view != null) {
+						if (it) view!!.navigateToNext() else view!!.showError(defErrorMsg)
+					}
 				}, {
-					view!!.showError(if (it.message != null) it.message!! else context!!.getString(R.string.def_error))
+					if (view != null) {
+						view!!.showError(if (it.message != null) it.message!! else defErrorMsg)
+					}
 				})
 	}
 

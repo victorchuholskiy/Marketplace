@@ -61,7 +61,7 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 						android.support.v4.content.ContextCompat.getColor(requireContext(), R.color.colorPrimary),
 						android.support.v4.content.ContextCompat.getColor(requireContext(), R.color.colorAccent)
 				)
-				setOnRefreshListener {  }
+				setOnRefreshListener { presenter.updateProductsFromServer() }
 			}
 		}
 		return view
@@ -70,6 +70,7 @@ class ProductsFragment @Inject constructor(): Fragment(), ProductsContract.View 
 	override fun onResume() {
 		super.onResume()
 		presenter.takeView(this)
+		presenter.loadProducts()
 	}
 
 	override fun onDestroy() {

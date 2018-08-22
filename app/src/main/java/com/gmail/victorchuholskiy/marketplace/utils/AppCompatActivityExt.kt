@@ -12,8 +12,19 @@ import android.support.v7.app.AppCompatActivity
  * performed by the `fragmentManager`.
  */
 fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment,
-												@IdRes frameId: Int,
-												tag: String) {
+												@IdRes frameId: Int) {
+	supportFragmentManager.transact {
+		replace(frameId, fragment)
+	}
+}
+
+/**
+ * The `fragment` is added to the container view with id `frameId`. The operation is
+ * performed by the `fragmentManager`.
+ */
+fun AppCompatActivity.replaceFragmentAddToBackStack(fragment: Fragment,
+													@IdRes frameId: Int,
+													tag: String) {
 	supportFragmentManager.transact {
 		replace(frameId, fragment).addToBackStack(tag)
 	}

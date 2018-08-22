@@ -5,7 +5,7 @@ import android.view.MenuItem
 import com.gmail.victorchuholskiy.marketplace.R
 import com.gmail.victorchuholskiy.marketplace.utils.ARG_URL
 import com.gmail.victorchuholskiy.marketplace.utils.DETAILS_FRAGMENT_TAG
-import com.gmail.victorchuholskiy.marketplace.utils.PRODUCT_FRAGMENT_TAG
+import com.moovel.android.coding.challenge.utils.replaceFragmentAddToBackStack
 import com.moovel.android.coding.challenge.utils.replaceFragmentInActivity
 import com.moovel.android.coding.challenge.utils.setupActionBar
 import dagger.Lazy
@@ -29,7 +29,7 @@ class ProductsActivity : DaggerAppCompatActivity(), ProductDetailsListener {
 
 		supportFragmentManager.findFragmentById(R.id.contentFrame)
 				as ProductsFragment? ?: productsFragmentProvider.get().also {
-			replaceFragmentInActivity(it, R.id.contentFrame, PRODUCT_FRAGMENT_TAG)
+			replaceFragmentInActivity(it, R.id.contentFrame)
 		}
 	}
 
@@ -39,7 +39,7 @@ class ProductsActivity : DaggerAppCompatActivity(), ProductDetailsListener {
 		val bundle = Bundle()
 		bundle.putString(ARG_URL, url)
 		detailsFragment.arguments = bundle
-		replaceFragmentInActivity(detailsFragment, R.id.contentFrame, DETAILS_FRAGMENT_TAG)
+		replaceFragmentAddToBackStack(detailsFragment, R.id.contentFrame, DETAILS_FRAGMENT_TAG)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
